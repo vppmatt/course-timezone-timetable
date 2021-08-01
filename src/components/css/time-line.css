@@ -74,7 +74,7 @@ h2.h2-right {
     height: 0;
     border-top: 30px solid transparent;
     border-bottom: 30px solid transparent;
-    border-left: 30px solid blue;
+    border-left: 30px solid #99f;
     float:left;
     margin-top: 10px;
 }
@@ -84,7 +84,7 @@ h2.h2-right {
     height: 0;
     border-top: 30px solid transparent;
     border-bottom: 30px solid transparent;
-    border-right:30px solid blue;
+    border-right:30px solid #99f;
     float:left;
     margin-top: 10px;
 }
@@ -111,4 +111,21 @@ h2.h2-right {
     font-size: 10px;
     background-color: #ddd;
     border-bottom: 1px solid #ccc;
+}
+
+.time-bar-center .next-event-description {
+    background-color: #aaf;
+    margin-top:0;
+    border-top-color: #aaf;
+}
+
+.time-bar-center .next-event-time {
+    background-color: #aaf;
+}
+
+.next-event {
+    margin-top: 10px;
+    background-color: #aaf;
+    text-align:center;
+    font-size: 14px;
 }

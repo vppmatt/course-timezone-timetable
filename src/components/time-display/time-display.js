@@ -17,14 +17,13 @@ const TimeDisplay = (props) => {
             }
         }
 
-
         setDisplayTime(timeNow.toLocaleTimeString().substr(0,5));
-        const currentSeconds = new Date().getSeconds();
-        const refreshIn = (60 - currentSeconds) * 1000;
-        setTimeout(refreshTimes, refreshIn);
+        setTimeout(refreshTimes, 60000);
     }
 
-    useEffect( () => refreshTimes() );
+    useEffect( () => {
+        setTimeout(refreshTimes, 1000);
+    } , []);
 
     return <div className={props.className} >{displayTime}</div>;
 }

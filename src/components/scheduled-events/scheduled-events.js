@@ -1,12 +1,39 @@
-import {events} from './../../course-data'
+import {events} from '../../course-data';
+import {useEffect, useState} from "react";
 
 const ScheduledEvents = (props) => {
 
-    //adjusting by 0.01 to overcome double precision issue
-    const remainingEvents = events.filter( it => it.time >= props.atTime - 0.01 && it.time <= props.atTime + 0.49);
+    let [nextEvent, setNextEvent] = useState(null);
+    let [display, setDisplay] = useState(null);
 
-    const nextEvent = remainingEvents.length > 0 ? remainingEvents[0] : {time: -1, description : ""};
-    const display =  remainingEvents.length > 0;
+    let targetTime = +props.atTime;
+
+    const refreshEvents = () => {
+
+        if (props.isCurrentTime == null || props.isCurrentTime === false) {
+            const hours = Math.floor(+props.atTime);
+            let mins = +props.atTime - hours;
+            if(mins >= 0.5) {
+                mins = 0.5;
+            }else {
+                mins = 0;
+            }
+            targetTime = hours + mins;
+        }
+
+
+        const remainingEvents = events.filter( it => it.time >= targetTime - 0.05 && it.time <= targetTime + 0.05);
+        setNextEvent(remainingEvents.length > 0 ? remainingEvents[0] : {time: -1, description : ""});
+        setDisplay(remainingEvents.length > 0);
+
+        console.log('looking for events between ',targetTime - 0.05,targetTime + 0.05)
+
+        setTimeout(refreshEvents, 60000);
+    }
+
+    useEffect( () => {
+        setTimeout(refreshEvents, 1000);
+    }, [] );
 
     const showTime = (time) => {
 
@@ -20,9 +47,11 @@ const ScheduledEvents = (props) => {
         );
     }
 
-    return <div>
+    return (<div>
+        {props.isCurrentTime && display && <div className="next-event">coming next...</div>}
         {display && <div className="next-event-description">{nextEvent.description}</div>}
         {display && <div className="next-event-time">{showTime(nextEvent.time)}</div>}
-    </div>;
+    </div>);
 }
+
 export default ScheduledEvents;

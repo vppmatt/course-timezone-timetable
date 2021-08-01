@@ -10,16 +10,15 @@ const CurrentTimeBar = () => {
     timeNow.setTime(timeNow.getTime() + (timeZone1.offset * 60 * 60 * 1000));
     const hours = timeNow.getHours();
     const mins = timeNow.getMinutes();
-    const firstTime = +hours + (+mins / 60) / 100;
-
+    const firstTime = +hours + (+mins / 60);
 
     //do we display otherTimeBar before or after?
     const exactTimeBefore = mins === 0;
     const exactTimeAfter = mins === 30;
     const timeBefore = timeNow.getMinutes() > 30 ? timeNow.getHours() + 0.5 : timeNow.getHours();
-    const timeAfter = timeNow + 0.5;
+    const timeAfter = timeBefore + 0.5;
 
-    return (<div class="time-line-outer-wrapper">
+    return (<div className="time-line-outer-wrapper">
         {!exactTimeBefore && <OtherTimeBar offset1={timeZone1.offset} offset2={timeZone2.offset} atTime={timeBefore} />}
         <div className="timeBar">
             <TimeDisplay offset={timeZone1.offset} className="left-time" mode="exact"/>

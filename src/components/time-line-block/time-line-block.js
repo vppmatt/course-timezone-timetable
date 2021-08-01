@@ -12,7 +12,9 @@ const TimeLineBlock = (props) => {
     timeNow.setTime(timeNow.getTime() + (firstValue*60*60*1000));
     const hours =  timeNow.toLocaleTimeString().substr(0,2);
     const mins =   timeNow.toLocaleTimeString().substr(3,2);
-    const firstTime = +hours + (+mins / 60)/100;
+    const firstTime = +hours + (+mins / 60);
+
+    console.log('timebar for ', +firstTime)
 
     return (
         <div className="time-line-outer-wrapper">
