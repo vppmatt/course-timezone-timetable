@@ -9,6 +9,6 @@ export const events = [
     {time:16.5, description: "call closes"}
 ]
 
-export const timeZone1 = {location : "CST", offset: -5};
+export const timeZone1 = {location : "CST", offset: -6};
 export const timeZone2 ={location : "UK", offset: 0};
 
